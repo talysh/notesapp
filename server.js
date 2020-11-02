@@ -5,7 +5,7 @@ const fs = require("fs");
 
 //Create an express server
 const app = express();
-const PORT = 8080;
+const PORT = process.env.PORT || 3001;
 
 
 let notes = [];
@@ -76,7 +76,6 @@ app.delete("/api/notes/:id", (req, res) => {
     res.json(notes);
     console.log(notes);
 });
-
 
 app.get("/api/notes/:id", (req, res) => {
     res.json(notes.filter(note => note.id === parseInt(req.params.id)));
