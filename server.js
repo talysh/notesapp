@@ -16,7 +16,39 @@ const outputPath = path.join(dbDir, "db.json");
 //Enable easy return of jsons
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
 app.use(express.static(path.join(__dirname, 'Develop/public')));
+
+
+
+const readAndAssign = () => {
+    fs.readFile(outputPath, "utf8", function (error, data) {
+        if (error) {
+            return console.log(error);
+        }
+        if (data === "") {
+            notes = [];
+        }
+        else {
+            notes = JSON.parse(data);
+        }
+
+        console.log(data);
+    });
+}
+
+readAndAssign();
+
+
+const updateAndWrite = () => {
+    fs.writeFile(outputPath, JSON.stringify(notes), function (err) {
+        if (err) {
+            throw err;
+        }
+        console.log("Successfully wrote to file");
+    });
+}
+
 
 
 //Set route for notes
@@ -40,6 +72,7 @@ app.delete("/api/notes/:id", (req, res) => {
     notes = notes.filter((obj) => {
         return obj.id !== parseInt(req.params.id)
     });
+    updateAndWrite();
     res.json(notes);
     console.log(notes);
 });
@@ -58,6 +91,7 @@ app.post(`/api/notes/`, (req, res) => {
     console.log(newNote);
     notes.push(newNote);
     console.log(notes);
+    updateAndWrite();
     res.json(notes);
 });
 
