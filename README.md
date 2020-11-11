@@ -42,6 +42,6 @@ Email: taleh.aliyev@gmail.com
 
 ## Screenshot
 
-![image](https://talysh.github.io/notesapp/Assets/samplescreen.png)
+![image](https://github.com/talysh/notesapp/blob/main/Assets/samplescreen.png)
 
-App link: [https://limitless-basin-26543.herokuapp.com]https://limitless-basin-26543.herokuapp.com
+App link: https://limitless-basin-26543.herokuapp.com
